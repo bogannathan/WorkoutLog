@@ -13,3 +13,5 @@ $(document).ready(function() {
 		console.log("not work")
 	})
 })
+
+// this file gets the info from api/test. it works because onready it runs let test and gets

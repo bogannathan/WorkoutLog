@@ -12,3 +12,5 @@ app.listen(3000, function() {
 })
 
 
+//this file pulls in express and the headers.js file. it also gives response to the api/test url.
+//when server open it shows app open
