@@ -44,8 +44,9 @@ var User = sequelize.define('user', {
 //doesn't drom the db
 
 User.sync()
+// DANGER THIS WILL DROP THE TABLEEEEEEEEEEEEEEEE
 //User.sync({force:true})
-
+//
 app.use(bodyParser.json())
 
 app.post('/api/user', function(req, res) {
@@ -61,7 +62,7 @@ app.post('/api/user', function(req, res) {
 			//sequelize is going to return the object it created from db
 		function createSuccess(user){
 			res.json({
-				user: username,
+				user: user,
 				message: 'create'
 			})		
 		},
