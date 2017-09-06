@@ -3,6 +3,7 @@ $(document).ready(function() {
 		let API_BASE = "http://localhost:3000/api/"
 		let userDefinitions= []
 
+		//private, gonna stay in the expression. 
 		let setAuthHeader = function(sessionToken) {
 			window.localStorage.setItem("sessionToken", sessionToken)
 			//set the auth header
@@ -15,7 +16,7 @@ $(document).ready(function() {
 			})
 		}
 
-		// public
+		// public. this will be exposed to the rest of the world
 		return {
 			API_BASE: API_BASE,
 			setAuthHeader: setAuthHeader
@@ -43,10 +44,10 @@ $(document).ready(function() {
 	//bind enter key
 	$(document).on('keypress', function(e) {
 		if (e.which === 13) {
-			if ($(signup-modal).is(':visible')) {
-				$(signup).trigger(click)
+			if ($(signupModal).is(':visible')) {
+				$(signup).trigger('click')
 			}
-			if ($(login-modal).is(':visible')) {
+			if ($(loginModal).is(':visible')) {
 				$(login).trigger('click')
 			}
 		}
