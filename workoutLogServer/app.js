@@ -14,6 +14,7 @@ app.use('/api/user', require('./routes/user'))
 app.use('/api/test', function(req, res) {
 	res.send("Hello world")
 })
+app.use('/api/login', require('./routes/session'))
 
 app.listen(3000, function() {
 	console.log("app is open on 3000!")
