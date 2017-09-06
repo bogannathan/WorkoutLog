@@ -6,7 +6,8 @@ const sequelize = require('./db')
 
 const User = sequelize.import('./models/user')
 
-User.sync() //User.sync({force:true})
+// User.sync() 
+User.sync({force:true})
 
 app.use(bodyParser.json()) 
 // this needs to be in front of other app.use. it must jsonify 

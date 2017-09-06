@@ -85,4 +85,10 @@ $(function(){
 	})
 	//bind events
 	$(signup).on('click', WorkoutLog.signup)
+	$(login).on('click', WorkoutLog.login)
+	$(loginout).on('click', WorkoutLog.loginout)
+
+	if (window.localStorage.getItem('sessionToken')) {
+		$(loginout).text("Logout")
+	}
 })
