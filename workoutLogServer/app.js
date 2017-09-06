@@ -16,7 +16,7 @@ app.use(require('./middleware/validate-session'))
 app.use('/api/user', require('./routes/user'))
 //log in a user
 app.use('/api/login', require('./routes/session'))
-//localhose: 300/api/login/
+//localhost:3000/api/login/
 
 app.use('/api/test', function(req, res) {
 	res.send("Hello world")

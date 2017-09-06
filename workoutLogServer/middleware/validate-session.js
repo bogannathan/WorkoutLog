@@ -4,7 +4,9 @@ var USer = sequelize.import('../models/user')
 
 module.exports = function(req, res, next){
 	var sessionToken = req.headers.authorization
-
+		console.log("**sessiontoken**")
+		console.log(sessionToken)
+		
 	if(!req.body.user && sessionToken){
 		jwt.verify(sessionToken, process.env.JWT_SECRET, function(err, decoded){
 			if(decoded){
