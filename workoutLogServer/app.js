@@ -1,23 +1,21 @@
 require('dotenv').config()
-var express=require('express')
-var app=express()
-var bodyParser = require('body-parser')
-var sequelize = require('./db')
+const express=require('express')
+const app=express()
+const bodyParser = require('body-parser')
+const sequelize = require('./db')
 
-var User = sequelize.import(__dirname + '\\models\\user')
+const User = sequelize.import('./models/user')
 
 User.sync() //User.sync({force:true})
 
-app.use(bodyParser.json()) // this needs to be in front of other app.use. it must jsonify 
-//so that other functions can use json objects
+app.use(bodyParser.json()) 
+// this needs to be in front of other app.use. it must jsonify 
+//so that other functions can use json objects.
+//the other files that use req.body.... use json objects. 
 app.use(require('./middleware/headers'))
 app.use(require('./middleware/validate-session'))
-//create a user
 app.use('/api/user', require('./routes/user'))
-//log in a user
 app.use('/api/login', require('./routes/session'))
-//localhost:3000/api/login/
-
 app.use('/api/test', function(req, res) {
 	res.send("Hello world")
 })

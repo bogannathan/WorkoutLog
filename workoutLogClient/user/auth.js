@@ -40,11 +40,48 @@ $(function(){
 			.always(function(){
 				alert("hey play this cool game while you sign up")
 			})
-		}
+		},
 
 		//login method
+		login: function(){
+			// login variables
+			let username = $(li_username).val()
+			let password = $(li_password).val()
+			let user = {user: 
+				{
+					username: username,
+					password: password
+				}
+			}
 
+			//login POST
+			let login = $.ajax({
+				type: "POST",
+				url: WorkoutLog.API_BASE + "login",
+				data: JSON.stringify(user),
+				contentType: "application/json"
+			})
+			//login done/fail
+			login
+			.done(function(data) {
+				if (data.sessionToken) {
+					WorkoutLog.setAuthHeader(data.sessionToken)
+				}
+				$(loginModal).modal('hide')
+				$('.disabled').removeClass('disabled')
+				$(loginout).text('Logout')
+			})
+			.fail(function() {
+				$(li_error).text("There was an issue with log in").show()
+			})
+		},
 		//loginout method
+		loginout: function() {
+			if (window.localStorage.getItem('sessionToken')) {
+				window.localStorage.removeItem('sessionToken')
+				$(loginout).text("Login")
+			}
+		}
 	})
 	//bind events
 	$(signup).on('click', WorkoutLog.signup)

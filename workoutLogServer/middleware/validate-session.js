@@ -1,9 +1,9 @@
-var jwt = require('jsonwebtoken')
-var sequelize = require('../db')
-var USer = sequelize.import('../models/user')
+let jwt = require('jsonwebtoken')
+let sequelize = require('../db')
+let USer = sequelize.import('../models/user')
 
 module.exports = function(req, res, next){
-	var sessionToken = req.headers.authorization
+	let sessionToken = req.headers.authorization
 
 	if(!req.body.user && sessionToken){
 		jwt.verify(sessionToken, process.env.JWT_SECRET, function(err, decoded){

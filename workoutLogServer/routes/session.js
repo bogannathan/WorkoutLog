@@ -1,8 +1,8 @@
-var router = require('express').Router()
-var bcrypt = require('bcryptjs')
-var jwt = require('jsonwebtoken')
-var sequelize = require('../db')
-var User = sequelize.import('../models/user')
+let router = require('express').Router()
+let bcrypt = require('bcryptjs')
+let jwt = require('jsonwebtoken')
+let sequelize = require('../db')
+let User = sequelize.import('../models/user')
 
 router.post('/', function(req, res) {
 		//1)First we need a function that searches for a particular user that matches the incoming request.		
@@ -13,12 +13,13 @@ router.post('/', function(req, res) {
 			//If the request is not successful and there is not a user that matches that request,
 			//throw an error.
 			//2)If the request was not successful and that user does not exist, throw an error.
-	User.findOne( { where: { username: req.body.user.username } } ).then(
-		function(user) {
-			if (user) {
+	User.findOne( { where: { username: req.body.user.username } } ).then( //find a user that matches username to req.body.user.username
+			//findOne is a sequelize method
+		function(user) { //for .then, the first argument is success, second is failure
+			if (user) { //user is the server response
 				bcrypt.compare(req.body.user.password, user.passwordhash, function(err, matches){
 					if (matches) {
-					   var token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: 60*60*24 });
+					   let token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: 60*60*24 });
 						res.json({
 							user: user,
 							message: "successfully authenticated",
