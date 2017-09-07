@@ -21,6 +21,7 @@
 			<li><a href="#define" data-toggle="tab" class="">Define</a></li>
 			<li><a href="#log" data-toggle="tab" class="">Log</a></li>
 			<li><a href="#history" data-toggle="tab" class="">View History</a></li>
+			<a href="#updateLog" data-toggle="tab" class="" type="hidden"></a>
 		</ul>
 	
 		<div class="container">
@@ -64,7 +65,21 @@
 			<textarea class="form-control" id="logDescription" rows="3"></textarea>
 			<button id="logSave" class="btn btn-primary">Save</button>
 		</div>
-		
+
+		<div id="updateLog" class="tab-pane fade">
+			<h2>Log Update</h2>
+			<label>Result</label>
+			<input type="hidden" class="form-control" id="updateID"/>
+			<input type="text" class="form-control" id="updateResult"/>
+			<label>Workout Select:</label>
+			<select class="form-control" id="updateDefinition">
+			</select>
+			<label>notes</label>
+			<textarea class="form-control" id="updateDescription" rows="3"></textarea>
+			<br />
+			<button id="logUpdate" class="btn btn-primary">Save</button>
+		</div>
+
 		<div class="tab-pane fade" id="history">
 			<h2>History</h2>
 			<ul class="list-group" id="historyList">

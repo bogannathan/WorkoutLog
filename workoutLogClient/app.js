@@ -36,7 +36,9 @@ $(document).ready(function() {
 		if (target === '#log') { ///when checking for equality, ids must be '#id'
 			WorkoutLog.log.setDefinitions()
 		}
-
+		if (target === '#updateLog') {
+			WorkoutLog.log.setDefinitions()
+		}
 		if (target === '#history') {
 			WorkoutLog.log.setHistory()
 		}

@@ -5,8 +5,9 @@ $(function() {
 			workouts: [],
 			setDefinitions: function() {
 				let defs = WorkoutLog.definition.userDefinitions
+				console.log(defs, "defs")
 				let len = defs.length
-				let opts
+				let opts = ""
 				for (let i = 0; i < len; i++) {
 					opts += "<option value='" + defs[i].id +"'>" + defs[i].description + "</option>"
 				}
@@ -15,14 +16,16 @@ $(function() {
 			},
 			setHistory: function() {
 				let history = WorkoutLog.log.workouts
+				console.log(history, "history")
 				let len = history.length
 				let lis = ""
+				console.log('setHistoryrunning')
 				for (let i = 0; i < len; i++) {
 					lis += "<li class='list-group-item'>" + 
-					history[i].def + "-" + 
+					history[i].def + " - " + 
 					history[i].result + " " +
 					"<div class='pull-right'>" +
-						"<button id='" + history[i].id + "' class='updated'><strong>U</strong></button>" +
+						"<button id='" + history[i].id + "' class='update'><strong>U</strong></button>" +
 						"<button id='" + history[i].id + "' class='remove'><string>X</strong></button>" +
 					"</div></li>"
 				}
@@ -47,6 +50,69 @@ $(function() {
 					WorkoutLog.log.workouts.push(data)
 					$(logDescription).val("")
 					$(logResult).val("")
+					$('a[href="#history"]').tab("show")
+				})
+			},
+			getWorkout: function () {
+				console.log('HEY THIS IS WORKING PROPERLY')
+				let thisLog = {id: $(this).attr('id')}
+				console.log(thisLog)
+				console.log($(this))
+				logID = thisLog.id
+				let updateData = { log: thisLog }
+				let getLog = $.ajax({
+					type: "GET",
+					url: WorkoutLog.API_BASE + "log/" + logID,
+					data: JSON.stringify(updateData),
+					contentType: "application/json"
+				})
+				getLog.done(function(data) {
+					$('a[href="#updateLog"]').tab("show")
+					$(updateResult).val(data.result)
+					$(updateDescription).val(data.description)
+					$(updateID).val(data.id)
+					WorkoutLog.log.updateDefinitions()
+				})
+			},
+			updateDefinitions: function() {
+				let defs = WorkoutLog.definition.userDefinitions
+				console.log(defs, "defs")
+				let len = defs.length
+				let opts = ""
+				for (let i = 0; i < len; i++) {
+					opts += "<option value='" + defs[i].id +"'>" + defs[i].description + "</option>"
+				}
+				$(updateDefinition).children().remove()
+				$(updateDefinition).append(opts)
+			},
+			updateWorkout: function() {
+				console.log('test')
+				// $(update).text("Update")
+				let updateLog = {
+					id: $(updateID).val(),
+					desc: $(updateDescription).val(),
+					result: $(updateResult).val(),
+					def: $("#updateDefinition option:selected").text()
+				}
+				console.log(updateLog, "updateLog")
+				for(var i = 0; i < WorkoutLog.log.workouts.length; i++){
+					if(WorkoutLog.log.workouts[i].id == updateLog.id){
+						WorkoutLog.log.workouts.splice(i, 1)
+					}
+				}
+				WorkoutLog.log.workouts.push(updateLog)
+				let updateLogData = { log: updateLog }
+				let updater = $.ajax({
+					type: "PUT",
+					url: WorkoutLog.API_BASE + "log",
+					data: JSON.stringify(updateLogData),
+					contentType: "application/json"
+				})
+
+				updater.done(function(data) {
+					console.log(data)
+					$(updateDescription).val("")
+					$(updateResult).val("")
 					$('a[href="#history"]').tab("show")
 				})
 			},
@@ -84,18 +150,24 @@ $(function() {
 						window.localStorage.getItem("sessionToken")
 					}
 				})
-				fetchDefs
-					.done(function(data) {
+				.done(function(data) {
+					console.log('test log.jsworkouts')
 						WorkoutLog.log.workouts = data 
-					})
-					.fail(function(err) {
+						console.log(data)
+				})
+				.fail(function(err) {
 						console.log(err)
-					})
+				})
 			}
 		}
 	})
 	$(logSave).on('click', WorkoutLog.log.create)
-	$(historyList).delegate('.remove', 'click', WorkoutLog.log.delete)
+	$(historyList).on('click', '.remove', WorkoutLog.log.delete)
+	$(logUpdate).on('click', WorkoutLog.log.updateWorkout)
+	$(historyList).on( 'click', '.update', WorkoutLog.log.getWorkout)
+	$(updateDefinition).on( 'click', '.update', WorkoutLog.log.getWorkout)
+	WorkoutLog.log.getWorkout
+	$(history).on('click').tab('show')
 
 	if(window.localStorage.getItem('sessionToken')) {
 		WorkoutLog.log.fetchAll()
