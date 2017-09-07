@@ -61,7 +61,6 @@ $(function(){
 				data: JSON.stringify(user),
 				contentType: "application/json"
 			})
-			//login done/fail
 			login
 			.done(function(data) {
 				if (data.sessionToken) {
