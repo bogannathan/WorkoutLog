@@ -35,89 +35,89 @@
 						<button class="btn btn-primary">Logout</button>
 					</div>
 				</div>
-			</div>
-		</div>
+
 
 
 
 <!-- Define -->
-	<div class="tab-pane fade" id='define'>
-		<h2>Define</h2>
-			<label for="defDescription">Description</label>
-			<textarea class="form-control" id="defDescription" rows="3"></textarea>
-			<label for="defLogtype">Log work by</label>
-			<select class="form-control" id="defLogtype">
-				<option>Time</option>
-				<option>Weight</option>
-				<option>Reps</option>
-			</select>
-			<button id="defSave" class="btn btn-primary">Save</button>
-	</div>
-
-	<div class="tab-pane fade" id="log">
-		<h2>log!</h2>
-		<label>Result</label>
-		<input type="text" class="form-control" id="logResult" />
-		<label>Workout Select:</label>
-		<select class="form-control" id="logDefinition">
-		</select>
-		<label>notes</label>
-		<textarea class="form-control" id="logDescription" rows="3"></textarea>
-		<button id="logSave" class="btn btn-primary">Save</button>
-	</div>
-	
-	<div class="tab-pane fade" id="history">
-		<h2>History</h2>
-		<ul class="list-group" id="historyList">
-		</ul>
-	</div>
-
-
-
-	<div id="signupModal" class="modal fade"  role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title">Sign Up</h4>
-				</div>
-				<div class="modal-body">
-					<div class="alert alert-danger" style="display: none;" role="alert" id="su_error"></div>
-					<label for="su_username">Username</label>
-					<input id="su_username"/>
-					<label for="su_password">Password:</label>
-					<input type="password" id="su_password"/>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-					<button class="btn btn primary" id="signup" type="button">Sign Up</button>
-				</div>
-			</div>
+		<div class="tab-pane fade" id='define'>
+			<h2>Define</h2>
+				<label for="defDescription">Description</label>
+				<textarea class="form-control" id="defDescription" rows="3"></textarea>
+				<label for="defLogtype">Log work by</label>
+				<select class="form-control" id="defLogtype">
+					<option>Time</option>
+					<option>Weight</option>
+					<option>Reps</option>
+				</select>
+				<button id="defSave" class="btn btn-primary">Save</button>
 		</div>
-	</div>
 
-	<div id="loginModal" class="modal fade"  role="dialog">
+		<div class="tab-pane fade" id="log">
+			<h2>log!</h2>
+			<label>Result</label>
+			<input type="text" class="form-control" id="logResult" />
+			<label>Workout Select:</label>
+			<select class="form-control" id="logDefinition">
+			</select>
+			<label>notes</label>
+			<textarea class="form-control" id="logDescription" rows="3"></textarea>
+			<button id="logSave" class="btn btn-primary">Save</button>
+		</div>
+		
+		<div class="tab-pane fade" id="history">
+			<h2>History</h2>
+			<ul class="list-group" id="historyList">
+			</ul>
+		</div>
+
+
+
+		<div id="signupModal" class="modal fade"  role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title">Login</h4>
+						<h4 class="modal-title">Sign Up</h4>
 					</div>
 					<div class="modal-body">
-						<div class="alert alert-danger" style="display: none;" role="alert" id="li_error"></div>
-						<label for="li_username">Username</label>
-						<input id="li_username"/>
-						<label for="li_password">Password:</label>
-						<input type="password" id="li_password"/>
+						<div class="alert alert-danger" style="display: none;" role="alert" id="su_error"></div>
+						<label for="su_username">Username</label>
+						<input id="su_username"/>
+						<label for="su_password">Password:</label>
+						<input type="password" id="su_password"/>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<button class="btn btn primary" id="login" type="button">Login</button>
+						<button class="btn btn primary" id="signup" type="button">Sign Up</button>
 					</div>
 				</div>
 			</div>
-	</div>
+		</div>
 
+		<div id="loginModal" class="modal fade"  role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Login</h4>
+						</div>
+						<div class="modal-body">
+							<div class="alert alert-danger" style="display: none;" role="alert" id="li_error"></div>
+							<label for="li_username">Username</label>
+							<input id="li_username"/>
+							<label for="li_password">Password:</label>
+							<input type="password" id="li_password"/>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+							<button class="btn btn primary" id="login" type="button">Login</button>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
 		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script src="./app.js"></script>		
