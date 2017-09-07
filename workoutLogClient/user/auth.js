@@ -66,6 +66,7 @@ $(function(){
 			.done(function(data) {
 				if (data.sessionToken) {
 					WorkoutLog.setAuthHeader(data.sessionToken)
+					console.log('you logged in!')
 				}
 				$(loginModal).modal('hide')
 				$('.disabled').removeClass('disabled')
