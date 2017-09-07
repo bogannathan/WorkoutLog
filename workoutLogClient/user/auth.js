@@ -35,6 +35,9 @@ $(function(){
 				$(signupModal).modal("hide")
 				$('.disabled').removeClass("disabled")
 				$(loginout).text("Logout")
+				$('a[href="#define"]').tab('show')
+				$(su_username).val("")
+				$(su_password).val("")			
 			})
 			.fail(function() {
 				$(su_error).text("There was an issue with sign up").show()
@@ -74,6 +77,9 @@ $(function(){
 				$(loginModal).modal('hide')
 				$('.disabled').removeClass('disabled')
 				$(loginout).text('Logout')
+				$('a[href="#define"]').tab('show')
+				$(li_username).val("")
+				$(li_password).val("")
 			})
 			.fail(function() {
 				$(li_error).text("There was an issue with log in").show()
