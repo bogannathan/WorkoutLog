@@ -6,7 +6,7 @@ $(function() {
 			create: function() {
 				let def = {
 					desc: $(defDescription).val(),
-					type: $(defLogtype)
+					type: $(defLogtype).val()
 				}
 				let postData = { definition: def}
 				let define = $.ajax({
@@ -18,6 +18,7 @@ $(function() {
 
 				define.done(function(data) {
 					WorkoutLog.definition.userDefinitions.push(data.definition)
+					console.log(data)
 				})
 			},
 			fetchAll: function() {
@@ -25,12 +26,11 @@ $(function() {
 					type: "GET",
 					url: WorkoutLog.API_BASE + "definition",
 					headers: {
-						"authorization": window.localStorage.getItem("sessionToken")
+						"authorization": window.localStorage.getItem('sessionToken')
 					}
-				})
-				fetchDefs
-				.done (function(data) {
+				}).done (function(data) {
 					WorkoutLog.definition.userDefinitions = data
+					console.log(WorkoutLog.definition)
 				})
 				.fail(function(err) {
 					console.log(err)

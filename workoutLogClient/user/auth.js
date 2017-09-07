@@ -28,6 +28,8 @@ $(function(){
 					WorkoutLog.setAuthHeader(data.sessionToken)
 					console.log("you made it")
 					console.log(data.sessionToken)
+					WorkoutLog.definition.fetchAll()
+					WorkoutLog.log.fetchAll()
 				}
 
 				$(signupModal).modal("hide")
@@ -66,6 +68,8 @@ $(function(){
 				if (data.sessionToken) {
 					WorkoutLog.setAuthHeader(data.sessionToken)
 					console.log('you logged in!')
+					WorkoutLog.definition.fetchAll()
+					WorkoutLog.log.fetchAll()
 				}
 				$(loginModal).modal('hide')
 				$('.disabled').removeClass('disabled')

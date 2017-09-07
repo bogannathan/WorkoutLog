@@ -20,8 +20,8 @@ app.use(require('./middleware/validate-session'))
 
 app.use('/api/user', require('./routes/user'))
 app.use('/api/login', require('./routes/session'))
-app.use('/api/definition', require('./routes/definition'))
 app.use('/api/log', require('./routes/log'))
+app.use('/api/definition', require('./routes/definition'))
 
 app.listen(3000, function() {
 	console.log("app is open on 3000!")

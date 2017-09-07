@@ -6,7 +6,8 @@ let Definition = sequelize.import('../models/definition')
 
 router.post('/', function(req, res) {
 	//REQ HAS SOME BODY PROPERTIES THAT HAVE A USERNAME AND PWD
-	let description = req.body.log.description
+	console.log('here is error')
+	let description = req.body.log.desc
 	let result = req.body.log.result
 	let user = req.user
 	let definition = req.body.log.def 
@@ -14,7 +15,7 @@ router.post('/', function(req, res) {
 	//use our sequelize model to create a log 
 	Log
 		.create({
-			description: descrioption,
+			description: description,
 			result: result,
 			owner: user.id,
 			def: definition 
@@ -24,7 +25,8 @@ router.post('/', function(req, res) {
 				res.json(log)	
 			},
 			function createError(err) {
-					res.send(500, err.message)
+				// console.log('here is error')
+					res.send(400, err.message)
 			}
 		)
 })
@@ -41,6 +43,7 @@ router.get('/', function(req, res) {
 			res.json(data)
 		},
 		function findAllError(err) {
+			// console.log('here is error')
 			res.send(500, err.message)
 		}
 	)

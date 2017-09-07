@@ -33,11 +33,11 @@ $(document).ready(function() {
 	//bind ab change events
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 		let target = $(e.target).attr("href")
-		if (target === log) {
+		if (target === '#log') { ///when checking for equality, ids must be '#id'
 			WorkoutLog.log.setDefinitions()
 		}
 
-		if (target === history) {
+		if (target === '#history') {
 			WorkoutLog.log.setHistory()
 		}
 	})

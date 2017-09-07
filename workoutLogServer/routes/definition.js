@@ -1,7 +1,8 @@
 let router = require('express').Router()
 let sequelize = require('../db.js')
-let User = sequelize.import('../models/user.js')
-let Definition = sequelize.import('../models/definition.js')
+let User = sequelize.import('../models/user')
+let Definition = sequelize.import('../models/definition')
+				// console.log('checking')
 
 router.post('/', function(req, res) {
 	//variables
@@ -20,11 +21,11 @@ router.post('/', function(req, res) {
 			function createSuccess(definition) {
 				//send a response as json
 				res.json({
-					definition: definition,
+					definition: definition
 				})
 			},
 			function createError(err) {
-				res.send(500, err.message)
+				res.status(500).send(err.message)
 			}
 		)
 })
