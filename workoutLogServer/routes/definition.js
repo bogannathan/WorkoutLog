@@ -1,7 +1,7 @@
 let router = require('express').Router()
 let sequelize = require('../db.js')
-let User = sequelize.Import('../models/user.js')
-let Definition = sequelize.Import('../models/definition.js')
+let User = sequelize.import('../models/user.js')
+let Definition = sequelize.import('../models/definition.js')
 
 router.post('/', function(req, res) {
 	//variables
@@ -43,9 +43,9 @@ router.get('/', function(req, res) {
 				res.json(data)
 			},
 			//failure
-			function findAllError(err {
+			function findAllError(err) {
 				res.send(500, err.message)
-			})
+			}
 		)
 })
 
